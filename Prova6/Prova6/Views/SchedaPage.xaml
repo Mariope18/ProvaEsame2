@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:Prova6.ViewModels"
+             xmlns:model="clr-namespace:Prova6.Models"
+             x:Class="Prova6.Views.SchedaPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+
+    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddEsercizioCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <Grid BackgroundColor="WhiteSmoke" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <RefreshView x:DataType="viewmodels:EsercizioViewModel"
+                         Command="{Binding LoadEsercizioCommand}"
+                         IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                         RefreshColor="Red">
+                <CollectionView Grid.Row="1" Margin="30" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                    ItemsSource="{Binding EsercizioInfos}"
+                    SelectionMode="None">
+                    <CollectionView.Header>
+                        <StackLayout>
+                            <Label Text="Le mie Schede" TextColor="Black" FontSize="30" FontAttributes="Bold"/>
+                        </StackLayout>
+                    </CollectionView.Header>
+                     <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                     VerticalItemSpacing="20"/>
+                     </CollectionView.ItemsLayout>
+                     <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame HasShadow="False" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand" CornerRadius="20">
+                                <Grid VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                                    <xct:Expander x:DataType="model:EsercizioInfo">
+                                        <xct:Expander.Header>
+                                        <Grid HorizontalOptions="FillAndExpand" BackgroundColor="White">
+                                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                                <Label Text="{Binding Name}" TextColor="Black" FontSize="26"
+                                                       HorizontalOptions="Center" FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </xct:Expander.Header>
+                                        <xct:Expander.ContentTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                <Label Text="ciao"/>
+                                            </Grid>
+                                            </DataTemplate>
+                                        </xct:Expander.ContentTemplate>
+                                    </xct:Expander>
+                                </Grid>
+                            </Frame>
+                    </DataTemplate>
+                     </CollectionView.ItemTemplate>
+                </CollectionView>
+        </RefreshView>
+    </Grid>
+
+    <!--<Grid BackgroundColor="LightGray" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+    </Grid>-->
+</ContentPage>

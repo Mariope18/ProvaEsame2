@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:Prova6.ViewModels" 
+             x:Class="Prova6.Views.AddEsercizioPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:AddEsercizioViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
+        <ToolbarItem Text="Cancel" Command="{Binding CancelCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="5" Padding="15" BackgroundColor="Gray">
+            <!--<Label Text="ID" FontSize="Medium" IsEnabled="False"/>
+            <Entry Text="{Binding EsercizioInfo.Id, Mode=TwoWay}" FontSize="Medium" IsEnabled="False"/>-->
+            <Label Text="Name" FontSize="Medium"/>
+            <Entry Text="{Binding EsercizioInfo.Name, Mode=TwoWay}" FontSize="Medium"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
